@@ -30,6 +30,7 @@ body {
 }
 a { color: var(--navy); text-underline-offset: 2px; }
 a:hover { color: var(--navy-2); }
+.tape .sym a, .items .h a, .items .src a, .cal .src a, a.src, #repo a { display: inline-flex; align-items: center; min-height: 44px; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 .wrap { max-width: 46rem; margin: 0 auto; padding: 0 16px; }
 h1, h2, h3 { line-height: 1.2; margin: 0; }
@@ -117,6 +118,7 @@ footer p { margin: .2rem 0; }
   .banner { border-left-color: #000; background: #fff; color: #000; }
   .wrap { max-width: none; padding: 0; }
   a { color: #000; text-decoration: none; }
+  .tape .sym a, .items .h a, .items .src a, .cal .src a, a.src, #repo a { display: inline; min-height: 0; }
   .items .h a::after { content: " (" attr(href) ")"; font-size: 8.5pt; color: #444; }
   .co { break-inside: avoid; }
   #changelog, .no-print { display: none; }
@@ -180,94 +182,116 @@ const WATCHLIST = {
 };
 
 const BRIEF = {
-  mode: "sample",
-  asOf: "2026-10-16",
-  retrievedAt: "2026-10-16T16:30:00-04:00",
-  priceType: "close",
+  mode: "live",
+  asOf: "2026-10-28",
+  retrievedAt: "2026-10-28T09:50:00-04:00",
+  priceType: "intraday",
   companies: {
     NVDA: {
       closes: [
-        { date: "2026-10-12", close: 100.00 },
-        { date: "2026-10-13", close: 101.40 },
-        { date: "2026-10-14", close: 99.80 },
-        { date: "2026-10-15", close: 103.10 },
-        { date: "2026-10-16", close: 104.20 }
+        { date: "2026-10-21", close: 221.97 },
+        { date: "2026-10-22", close: 212.21 },
+        { date: "2026-10-23", close: 210.96 },
+        { date: "2026-10-26", close: 216.00 },
+        { date: "2026-10-27", close: 217.94 }
       ],
-      latest: null,
-      priceSource: "https://example.com/sample",
+      latest: { date: "2026-10-28", time: "09:49", price: 217.47 },
+      priceSource: "https://stockanalysis.com/stocks/nvda/history/",
       news: [
-        { date: "2026-10-15", headline: "Sample headline. Run the refresh-brief agent to replace this.", source: "Sample", url: "https://example.com/sample", why: "Sample. The agent writes one plain sentence here on why the item matters to the stock." }
-      ],
-      upcoming: [
-        { date: "2026-10-28", event: "Sample event (replace by refreshing)", source: "Sample", url: "https://example.com/sample" }
-      ]
-    },
-    JPM: {
-      closes: [
-        { date: "2026-10-12", close: 100.00 },
-        { date: "2026-10-13", close: 99.30 },
-        { date: "2026-10-14", close: 98.90 },
-        { date: "2026-10-15", close: 98.20 },
-        { date: "2026-10-16", close: 97.60 }
-      ],
-      latest: null,
-      priceSource: "https://example.com/sample",
-      news: [
-        { date: "2026-10-14", headline: "Sample headline. Run the refresh-brief agent to replace this.", source: "Sample", url: "https://example.com/sample", why: "Sample." }
+        { date: "2026-10-27", headline: "Nvidia to invest $3B in Meta's planned equity offering", source: "Stock Analysis", url: "https://stockanalysis.com/news/nvidia-3-billion-meta-offering/", why: "Nvidia is putting money into a major customer's stock sale, tying its fortunes closer to Meta's AI spending." },
+        { date: "2026-10-27", headline: "Nvidia, Oracle expand NVIDIA Vera Rubin to multi-gigawatt scale", source: "TheFly (TipRanks)", url: "https://www.tipranks.com/news/the-fly/nvidia-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-thefly-news", why: "A bigger Oracle cloud build-out on Nvidia's next-generation systems points to continued demand for its chips." },
+        { date: "2026-10-28", headline: "OpenAI planning to purchase AI chips from Google, The Information reports", source: "TheFly (TipRanks)", url: "https://www.tipranks.com/news/the-fly/openai-planning-to-purchase-ai-chips-from-google-the-information-reports-thefly-news", why: "A long-time Nvidia customer buying rival chips is a possible sign of competition for Nvidia's share." }
       ],
       upcoming: []
     },
+    JPM: {
+      closes: [
+        { date: "2026-10-21", close: 335.19 },
+        { date: "2026-10-22", close: 336.54 },
+        { date: "2026-10-23", close: 331.58 },
+        { date: "2026-10-26", close: 334.04 },
+        { date: "2026-10-27", close: 335.79 }
+      ],
+      latest: { date: "2026-10-28", time: "09:49", price: 336.03 },
+      priceSource: "https://stockanalysis.com/stocks/jpm/history/",
+      news: [
+        { date: "2026-10-22", headline: "J.P. Morgan Asset Management Expands Access to Its Tokenized Money Market Funds on Solana", source: "PR Newswire", url: "https://www.prnewswire.com/news-releases/jp-morgan-asset-management-expands-access-to-its-tokenized-money-market-funds-on-solana-302917188.html", why: "J.P. Morgan Asset Management's two tokenized money market funds are now available on the Solana blockchain to qualified U.S. investors; the release gives no fund sizes." }
+      ],
+      upcoming: [
+        { date: "2026-10-28", event: "FOMC meeting scheduled Oct 27-28 (second day is today)", source: "Federal Reserve", url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" }
+      ]
+    },
     ACN: {
       closes: [
-        { date: "2026-10-12", close: 100.00 },
-        { date: "2026-10-13", close: 100.20 },
-        { date: "2026-10-14", close: 99.90 },
-        { date: "2026-10-15", close: 100.10 },
-        { date: "2026-10-16", close: 100.05 }
+        { date: "2026-10-21", close: 240.26 },
+        { date: "2026-10-22", close: 258.74 },
+        { date: "2026-10-23", close: 249.37 },
+        { date: "2026-10-26", close: 247.23 },
+        { date: "2026-10-27", close: 235.16 }
       ],
-      latest: null,
-      priceSource: "https://example.com/sample",
-      news: [],
-      upcoming: [
-        { date: "2026-10-22", event: "Sample event (replace by refreshing)", source: "Sample", url: "https://example.com/sample" }
-      ]
+      latest: { date: "2026-10-28", time: "09:49", price: 241.65 },
+      priceSource: "https://stockanalysis.com/stocks/acn/history/",
+      news: [
+        { date: "2026-10-27", headline: "Accenture awarded $151.46M Air Force task order", source: "TheFly (TipRanks)", url: "https://www.tipranks.com/news/the-fly/accenture-awarded-151-46m-air-force-task-order-thefly-news", why: "A firm-fixed-price task order for engineering services on the Air Force's ICBM FENCES program, with work expected to run through June 30, 2030." },
+        { date: "2026-10-26", headline: "Accenture price target raised to $252 from $210 at Wells Fargo", source: "TheFly (TipRanks)", url: "https://www.tipranks.com/news/the-fly/accenture-price-target-raised-to-252-from-210-at-wells-fargo-thefly-news", why: "The analyst is more positive but keeps an Equal Weight rating, saying AI-driven growth will take time to show up." },
+        { date: "2026-10-21", headline: "Accenture downgraded to Neutral from Outperform at Baird", source: "TheFly (TipRanks)", url: "https://www.tipranks.com/news/the-fly/accenture-downgraded-to-neutral-from-outperform-at-baird-thefly-news", why: "Baird says the shares have more than doubled since June, so the good news may already be priced in." }
+      ],
+      upcoming: []
     },
     DIS: {
       closes: [
-        { date: "2026-10-12", close: 100.00 },
-        { date: "2026-10-13", close: 102.50 },
-        { date: "2026-10-14", close: 101.80 },
-        { date: "2026-10-15", close: 103.90 },
-        { date: "2026-10-16", close: 102.70 }
+        { date: "2026-10-21", close: 111.83 },
+        { date: "2026-10-22", close: 113.13 },
+        { date: "2026-10-23", close: 112.52 },
+        { date: "2026-10-26", close: 110.40 },
+        { date: "2026-10-27", close: 110.23 }
       ],
-      latest: null,
-      priceSource: "https://example.com/sample",
+      latest: { date: "2026-10-28", time: "09:49", price: 109.64 },
+      priceSource: "https://stockanalysis.com/stocks/dis/history/",
       news: [
-        { date: "2026-10-13", headline: "Sample headline. Run the refresh-brief agent to replace this.", source: "Sample", url: "https://example.com/sample", why: "Sample." }
+        { date: "2026-10-27", headline: "Disney Stock (DIS) Is a Buy Despite Its Recent Weakness", source: "TipRanks", url: "https://www.tipranks.com/news/disney-stock-dis-is-a-buy-despite-its-recent-weakness", why: "An investor opinion piece: it cites 7% quarterly revenue growth but flags rising debt and consumer-spending risks." }
       ],
       upcoming: []
     },
     LLY: {
       closes: [
-        { date: "2026-10-12", close: 100.00 },
-        { date: "2026-10-13", close: 98.70 },
-        { date: "2026-10-14", close: 99.60 },
-        { date: "2026-10-15", close: 101.30 },
-        { date: "2026-10-16", close: 102.90 }
+        { date: "2026-10-21", close: 1270.75 },
+        { date: "2026-10-22", close: 1306.69 },
+        { date: "2026-10-23", close: 1273.46 },
+        { date: "2026-10-26", close: 1279.14 },
+        { date: "2026-10-27", close: 1281.91 }
       ],
-      latest: null,
-      priceSource: "https://example.com/sample",
+      latest: { date: "2026-10-28", time: "09:49", price: 1290.20 },
+      priceSource: "https://stockanalysis.com/stocks/lly/history/",
       news: [
-        { date: "2026-10-16", headline: "Sample headline. Run the refresh-brief agent to replace this.", source: "Sample", url: "https://example.com/sample", why: "Sample." }
+        { date: "2026-10-28", headline: "Lilly's retatrutide delivered greater A1C reduction and more than double the weight loss of Ozempic's highest approved dose in head-to-head trial", source: "PR Newswire", url: "https://www.prnewswire.com/news-releases/lillys-retatrutide-delivered-greater-a1c-reduction-and-more-than-double-the-weight-loss-of-ozempics-highest-approved-dose-in-head-to-head-trial-302921328.html", why: "Strong head-to-head data for Lilly's next obesity drug, though more patients stopped it due to side effects than on Ozempic." },
+        { date: "2026-10-27", headline: "Patrik Jonsson to retire after 36 years; Ilya Yuffa named president, Lilly Global Markets", source: "PR Newswire", url: "https://www.prnewswire.com/news-releases/patrik-jonsson-to-retire-after-36-years-ilya-yuffa-named-president-lilly-global-markets-302921191.html", why: "A planned leadership change that merges Lilly's U.S. and international businesses from 2027." }
       ],
       upcoming: [
-        { date: "2026-10-30", event: "Sample event (replace by refreshing)", source: "Sample", url: "https://example.com/sample" }
+        { date: "2026-10-29", event: "Q3 2026 earnings release and conference call at 10 a.m. ET (per a Lilly press release dated Oct 15, as reproduced by Finviz; Lilly's own pages could not be opened, so not confirmed on Lilly's site)", source: "Finviz (reproducing Lilly press release via PR Newswire, Oct 15)", url: "https://finviz.com/news/403165/lilly-confirms-date-and-conference-call-for-third-quarter-2026-financial-results-announcement" }
       ]
     }
   }
 };
 
 const CHANGELOG = [
+  {
+    date: "2026-10-28",
+    summary: [
+      "NVDA 221.97 to 217.47 on Nvidia's $3B Meta stock investment, Oracle Vera Rubin expansion, and a report OpenAI will buy Google AI chips",
+      "JPM 335.19 to 336.03 on no major news (tokenized money market funds expanded to Solana)",
+      "ACN 240.26 to 241.65 on a Baird downgrade to Neutral after the stock's rally, offset by a Wells Fargo target raise",
+      "DIS 111.83 to 109.64 on no major news (only a bullish opinion piece in the window)",
+      "LLY 1270.75 to 1290.20 on retatrutide beating Ozempic in a head-to-head diabetes trial",
+      "Replaced all sample data, including the sample DIS entry, with sourced data. Prices are the five closes Oct 21-27 plus an intraday price for Oct 28 at 9:49 AM ET (all five tickers read from stockanalysis.com within the same minute; its JPM page showed 9:50).",
+      "Correction: NVDA Oct 27 close changed from 188.40 to 217.94. 188.40 could not be verified on any source I opened; stockanalysis.com and Yahoo Finance history both show 217.94 (Google Finance was not opened this run).",
+      "Reworded the JPM tokenized money market funds and ACN Air Force task order 'why' lines to say only what the articles say (the earlier 'small but growing' and 'small against Accenture's overall size' claims were not in the articles).",
+      "Calendar: LLY Q3 earnings Oct 29 at 10 a.m. ET, from a Lilly press release dated Oct 15 as reproduced by Finviz. Lilly's investor site returned 403, so this is not confirmed on Lilly's own page. FOMC meeting Oct 27-28 is listed under JPM (checked on federalreserve.gov).",
+      "Missing: no confirmed calendar items in the next 14 days for NVDA (earnings Nov 17, outside window), ACN (earnings Dec 17), or DIS (fiscal Q4 earnings shown as Nov 17 by TipRanks and Stock Analysis, not confirmed on Disney's IR page).",
+      "Missing: JPM has one news item; a Business Wire notice (Oct 27), a CNBC story (Oct 21) and others were blocked or could not be opened, so were left out. DIS has one news item; the Oct 22 CNBC Super Bowl story and Reuters Glee story could not be opened, and a Character.AI hiring story dated Oct 20 was dropped as outside the seven-day window. Reuters, Barron's, Investopedia, CNBC and Business Wire pages could not be opened for any ticker."
+    ],
+    note: "Verify by hand: closes come from stockanalysis.com (only NVDA Oct 26-27 was cross-checked on Yahoo Finance). LLY earnings date rests on Finviz, a third-party copy of Lilly's release. Oct 28 prices are intraday at 9:49 AM ET, not closes. retrievedAt (09:50 ET) is approximate. DIS earnings date (Nov 17) is unconfirmed. Disney 'Buy' article is an opinion piece. The NVDA Oracle item is a TheFly summary of the press release, and the OpenAI/Google chips item is a one-line TheFly headline citing The Information, so treat it as a report, not confirmed."
+  },
   {
     date: "2026-10-16",
     summary: [
