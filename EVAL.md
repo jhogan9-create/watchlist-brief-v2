@@ -64,6 +64,20 @@ Google Finance (https://www.google.com/finance/quote/NVDA:NASDAQ) opened but sho
 | DIS | latest 09:49 | 109.64 | 109.79 at 9:57 (gap 0.15); closes Oct 21-27 all match | https://finance.yahoo.com/quote/DIS/history/ (Google Finance did not show it) | Pass |
 | LLY | latest 09:49 | 1290.20 | 1291.88 at 9:57 (gap 1.68); closes Oct 21-27 all match | https://finance.yahoo.com/quote/LLY/history/ (Google Finance did not show it) | Pass |
 
+### Refresh 2026-10-28, re-check 3 (NVDA Oct 27 close restored to 217.94)
+
+Google Finance (https://www.google.com/finance/quote/NVDA:NASDAQ) again returned only "Google Finance isn't supported on this device", so no Google value was available. Second named source: Yahoo Finance history pages, opened this run. Yahoo quote times were 9:57 AM EDT; brief intraday prices are stamped 9:49 (8 minutes earlier).
+
+| Ticker | Date | Dashboard | Ground truth | Source | Pass / Fail |
+|---|---|---|---|---|---|
+| NVDA | 2026-10-27 close | 217.94 | 217.94 (also 217.94 in the earlier fail row's sources) | https://finance.yahoo.com/quote/NVDA/history/ (Google Finance did not show it) | Pass (the earlier 188.40 Fail stands above as a record) |
+| NVDA | 2026-10-21, 22, 23, 26 closes | 221.97, 212.21, 210.96, 216.00 | 221.97, 212.21, 210.96, 216.00 | https://finance.yahoo.com/quote/NVDA/history/ | Pass |
+| NVDA | latest 2026-10-28 intraday 09:49 | 217.47 | 217.77 at 9:57:30 EDT (gap 0.30) | https://finance.yahoo.com/quote/NVDA/history/ (Google Finance did not show it) | Pass (time difference) |
+| JPM | closes Oct 21-27 and latest 09:49 | 335.19, 336.54, 331.58, 334.04, 335.79; latest 336.03 | same closes; 335.73 at 9:57:27 (gap 0.30) | https://finance.yahoo.com/quote/JPM/history/ (Google Finance did not show it) | Pass (time difference) |
+| ACN | closes Oct 21-27 and latest 09:49 | 240.26, 258.74, 249.37, 247.23, 235.16; latest 241.65 | same closes; 242.80 at 9:57:25 (gap 1.15, 0.5%; stock was +3.25% on the day, so fast moving) | https://finance.yahoo.com/quote/ACN/history/ (Google Finance did not show it) | Pass (time difference; cannot be confirmed to the cent, flagged) |
+| DIS | closes Oct 21-27 and latest 09:49 | 111.83, 113.13, 112.52, 110.40, 110.23; latest 109.64 | same closes; 109.79 at 9:57:30 (gap 0.15) | https://finance.yahoo.com/quote/DIS/history/ (Google Finance did not show it) | Pass (time difference) |
+| LLY | closes Oct 21-27 and latest 09:49 | 1270.75, 1306.69, 1273.46, 1279.14, 1281.91; latest 1290.20 | same closes; 1291.88 at 9:57:28 (gap 1.68, 0.13%) | https://finance.yahoo.com/quote/LLY/history/ (Google Finance did not show it) | Pass (time difference) |
+
 ## B. Weekly change (one row per ticker)
 
 The page computes this from the five closes. Pass if it is within 0.3 percentage points of
@@ -93,6 +107,18 @@ The page uses only the first close and the latest price, so the edited NVDA Oct 
 | NVDA | -2.0% (217.47 vs 221.97) | (217.77 - 221.97) / 221.97 = -1.89% (diff 0.14 pts) | Pass (number only; the sparkline uses the bad 188.40 close) |
 | JPM | +0.3% (336.03 vs 335.19) | (335.73 - 335.19) / 335.19 = +0.16% (diff 0.09 pts) | Pass |
 | ACN | +0.6% (241.65 vs 240.26) | (242.80 - 240.26) / 240.26 = +1.06% (diff 0.48 pts) | Fail (over 0.3 pts; caused by the 8-minute price gap, same as the earlier Fail) |
+| DIS | -2.0% (109.64 vs 111.83) | (109.79 - 111.83) / 111.83 = -1.82% (diff 0.14 pts) | Pass |
+| LLY | +1.5% (1290.20 vs 1270.75) | (1291.88 - 1270.75) / 1270.75 = +1.66% (diff 0.13 pts) | Pass |
+
+### Refresh 2026-10-28, re-check 3
+
+The page computes (latest price - first close) / first close, one decimal (weekChange in index.html). Inputs: Yahoo Oct 21 close and the Yahoo 9:57 AM quote (closest independent quote to the brief's 9:49; Google Finance showed nothing). Sources as in section A.
+
+| Ticker | Dashboard weekly change | Your calculation | Pass / Fail |
+|---|---|---|---|
+| NVDA | -2.0% (217.47 vs 221.97) | (217.77 - 221.97) / 221.97 = -1.89% (diff 0.14 pts) | Pass |
+| JPM | +0.3% (336.03 vs 335.19) | (335.73 - 335.19) / 335.19 = +0.16% (diff 0.09 pts) | Pass |
+| ACN | +0.6% (241.65 vs 240.26) | (242.80 - 240.26) / 240.26 = +1.06% (diff 0.48 pts) | Fail (over 0.3 pts; driven by the 8-minute price gap on a fast-moving stock, same as earlier Fails) |
 | DIS | -2.0% (109.64 vs 111.83) | (109.79 - 111.83) / 111.83 = -1.82% (diff 0.14 pts) | Pass |
 | LLY | +1.5% (1290.20 vs 1270.75) | (1291.88 - 1270.75) / 1270.75 = +1.66% (diff 0.13 pts) | Pass |
 
@@ -132,6 +158,21 @@ supported by the article (not just plausible).
 | LLY | Lilly's retatrutide delivered greater A1C... https://www.prnewswire.com/news-releases/lillys-retatrutide-delivered-greater-a1c-reduction-and-more-than-double-the-weight-loss-of-ozempics-highest-approved-dose-in-head-to-head-trial-302921328.html | Yes | Yes | Yes (Oct 28) | Yes (4.8% / 7.9% vs 2.7% discontinuation) | Pass |
 | LLY | Patrik Jonsson to retire... https://www.prnewswire.com/news-releases/patrik-jonsson-to-retire-after-36-years-ilya-yuffa-named-president-lilly-global-markets-302921191.html | Yes | Yes | Yes (Oct 27) | Yes (merge into Lilly Global Markets Jan 1, 2027) | Pass |
 
+### Refresh 2026-10-28, re-check 3 (reworded JPM and ACN "why" lines; all links reopened by me)
+
+| Ticker | Headline and link | Link opens | Headline matches | Dated within 7 days | "Why" is supported | Pass / Fail |
+|---|---|---|---|---|---|---|
+| NVDA | Nvidia to invest $3B in Meta's... https://stockanalysis.com/news/nvidia-3-billion-meta-offering/ | Yes | Yes | Yes (Oct 27) | Yes (Nvidia takes ~3% of Meta's stock sale; Meta expands use of Nvidia infrastructure) | Pass |
+| NVDA | Nvidia, Oracle expand Vera Rubin... https://www.tipranks.com/news/the-fly/nvidia-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-thefly-news | Yes | Yes | Yes (Oct 27) | Yes (expansion responds to customer demand) | Pass |
+| NVDA | OpenAI planning to purchase AI chips from Google... https://www.tipranks.com/news/the-fly/openai-planning-to-purchase-ai-chips-from-google-the-information-reports-thefly-news | Yes | Yes | Yes (Oct 28) | Partly: article says only that OpenAI is a long-time Nvidia customer; "possible sign of competition" is a hedged inference | Pass (borderline, same call as earlier) |
+| JPM | J.P. Morgan Asset Management Expands Access... https://www.prnewswire.com/news-releases/jp-morgan-asset-management-expands-access-to-its-tokenized-money-market-funds-on-solana-302917188.html | Yes | Yes | Yes (Oct 22) | Yes: two tokenized funds (MONY, JLTXX) now on Solana for qualified U.S. investors; release gives no fund sizes. Reworded line says only this | Pass (earlier Fail stands above as a record) |
+| ACN | Accenture awarded $151.46M Air Force... https://www.tipranks.com/news/the-fly/accenture-awarded-151-46m-air-force-task-order-thefly-news | Yes | Yes | Yes (Oct 27) | Yes: firm-fixed-price, ICBM FENCES, completion June 30, 2030. Reworded line says only this | Pass (earlier Fail stands above as a record) |
+| ACN | Accenture price target raised to $252... https://www.tipranks.com/news/the-fly/accenture-price-target-raised-to-252-from-210-at-wells-fargo-thefly-news | Yes | Yes | Yes (Oct 26) | Yes (Equal Weight kept; AI benefits take time) | Pass |
+| ACN | Accenture downgraded to Neutral... https://www.tipranks.com/news/the-fly/accenture-downgraded-to-neutral-from-outperform-at-baird-thefly-news | Yes | Yes | Yes (Oct 21) | Yes (shares more than doubled since June, valuation) | Pass |
+| DIS | Disney Stock (DIS) Is a Buy Despite... https://www.tipranks.com/news/disney-stock-dis-is-a-buy-despite-its-recent-weakness | Yes | Yes | Yes (Oct 27) | Yes (7% FQ3 revenue growth, debt up to $37.4B, consumer-spending risk) | Pass |
+| LLY | Lilly's retatrutide delivered greater A1C... https://www.prnewswire.com/news-releases/lillys-retatrutide-delivered-greater-a1c-reduction-and-more-than-double-the-weight-loss-of-ozempics-highest-approved-dose-in-head-to-head-trial-302921328.html | Yes | Yes | Yes (Oct 28) | Yes (discontinuation 4.8% / 7.9% vs 2.7%) | Pass |
+| LLY | Patrik Jonsson to retire... https://www.prnewswire.com/news-releases/patrik-jonsson-to-retire-after-36-years-ilya-yuffa-named-president-lilly-global-markets-302921191.html | Yes | Yes | Yes (Oct 27) | Yes (US and international combine as Lilly Global Markets Jan 1, 2027) | Pass |
+
 (Add rows as needed. Fifteen items is normal for five tickers.)
 
 ## D. Calendar (one row per event)
@@ -152,6 +193,13 @@ relative to the refresh date.
 |---|---|---|---|---|
 | JPM (FOMC) | FOMC meeting concludes (Oct 27-28) | 2026-10-28 | Yes: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm lists October 27-28; date equals asOf | Pass |
 | LLY | Q3 2026 earnings and call, 10 a.m. ET | 2026-10-29 | Lilly IR https://investor.lilly.com/events and https://lilly.gcs-web.com/news-releases/news-release-details/lilly-confirms-date-and-conference-call-third-quarter-2026 both returned HTTP 403. Only https://finviz.com/news/403165/lilly-confirms-date-and-conference-call-for-third-quarter-2026-financial-results-announcement opened (Oct 29, 10 a.m. ET, PR Newswire Oct 15); third-party, not the company page | Fail (only third-party confirmation) |
+
+### Refresh 2026-10-28, re-check 3 (LLY item reworded as not confirmed on Lilly's page)
+
+| Ticker | Event | Date shown | Confirmed on source | Pass / Fail |
+|---|---|---|---|---|
+| JPM (FOMC) | FOMC meeting Oct 27-28 | 2026-10-28 | Yes: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm lists October 27-28; date equals asOf | Pass |
+| LLY | Q3 2026 earnings and call, 10 a.m. ET | 2026-10-29 | Lilly IR https://investor.lilly.com/events and https://lilly.gcs-web.com/news-releases/news-release-details/lilly-confirms-date-and-conference-call-third-quarter-2026 both returned HTTP 403, could not open. Only https://finviz.com/news/403165/lilly-confirms-date-and-conference-call-for-third-quarter-2026-financial-results-announcement opened (Oct 29, 10 a.m. ET, release dated Oct 15). The brief now says honestly that it is not confirmed on Lilly's site, but the rule still requires the company's own page | Fail (only third-party confirmation; honest wording does not change the grade) |
 
 ## E. Omissions
 
@@ -178,10 +226,10 @@ news list in the data". Write the test, run it, record the result.
 
 | Section | Passes | Total | Rate |
 |---|---|---|---|
-| A. Prices (re-check after owner edit; first pass was 5/5) | 4 | 5 | 80% |
-| B. Weekly change | 4 | 5 | 80% |
-| C. News (re-check; first pass was 9/10) | 8 | 10 | 80% |
-| D. Calendar | 1 | 2 | 50% |
+| A. Prices (re-check 3; earlier re-check was 4/5 with the NVDA 188.40 Fail) | 5 | 5 | 100% |
+| B. Weekly change (re-check 3) | 4 | 5 | 80% |
+| C. News (re-check 3; earlier re-check was 8/10) | 10 | 10 | 100% |
+| D. Calendar (re-check 3) | 1 | 2 | 50% |
 | E. Omissions (fails only) | 0 | | |
 | F. Your own | | | |
 | **Overall** | | | |
